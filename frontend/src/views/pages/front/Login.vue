@@ -6,27 +6,45 @@
                     <v-form ref="frmLogin" lazy-validation>
                         <v-card>
                             <v-card-text class="my-4 text-center title">Halaman Login</v-card-text>
-                                <v-card-text>
-                                    <v-text-field 
-                                        v-model="formlogin.username"
-                                        label="Username" 
-                                        :rules="rule_username"
-                                    >  
-                                    </v-text-field>
-                                    <v-text-field
-                                        v-model="formlogin.password"
-                                        label="Password"
-                                        type="password"
-                                        :rules="rule_password"
-                                    >
-                                    </v-text-field> 
-                                </v-card-text>
-                                <v-divider class="mt-12"></v-divider>
-                                    <v-card-actions> 
-                                        <v-spacer></v-spacer>
-                                        <v-btn color="primary" text @click="doLogin">Login</v-btn>
-                                    </v-card-actions>
-                            </v-card>
+                                <v-alert
+                                    outlined
+                                    dense
+                                    type="error"
+                                    :value="form_error"
+                                    icon="mdi-close-octagon-outline"
+                                >
+                                    Username atau Password tidak dikenal !.
+                                </v-alert>
+                                    <v-card-text>
+                                        <v-text-field 
+                                            v-model="formlogin.username"
+                                            label="Username" 
+                                            :rules="rule_username"
+                                        >  
+                                        </v-text-field>
+                                        <v-text-field
+                                            v-model="formlogin.password"
+                                            label="Password"
+                                            type="password"
+                                            :rules="rule_password"
+                                        >
+                                        </v-text-field> 
+                                    </v-card-text>
+                                    <v-divider class="mt-12"></v-divider>
+                                        <v-card-actions> 
+                                            <v-spacer></v-spacer>
+                                            <v-btn 
+                                                color="primary" 
+                                                text 
+                                                @click="doLogin"
+                                                :loading="btnLoading"
+                                                :disabled="btnLoading"
+                                                block
+                                            >
+                                                Login
+                                            </v-btn>
+                                        </v-card-actions>
+                                </v-card>
                     </v-form>
                 </v-col>
             </v-row>
@@ -39,6 +57,10 @@ export default {
     name:'Login',
     data(){
         return {
+            btnLoading:false,
+
+            //form
+            form_error:false,
             formlogin: {
                 username:'',
                 password:''
@@ -56,6 +78,7 @@ export default {
         {
             if(this.$refs.frmLogin.validate())
             {
+                this.btnLoading=true;
                 console.log('test');
             }
         }
