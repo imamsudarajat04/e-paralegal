@@ -7,6 +7,8 @@ import vuetify from './plugins/vuetify';
 import api from './plugins/api';
 Vue.use(api);
 
+import '@/plugins/dayjs';
+
 Vue.config.productionTip = false
 
 new Vue({
