@@ -79,7 +79,7 @@
                 <v-list-group group="/dmaster" no-action color="yellow">
                     <template v-slot:activator>
                         <v-list-item-icon class="mr-2">
-                            <v-icon>mdi-home-floor-b</v-icon>
+                            <v-icon>mdi-format-list-bulleted</v-icon>
                         </v-list-item-icon>
                         <v-list-item-content>								
                             <v-list-item-title>DATA MASTER</v-list-item-title>
@@ -101,7 +101,7 @@
                 <v-list-group group="/konsultasi" no-action color="yellow">
                     <template v-slot:activator>
                         <v-list-item-icon class="mr-2">
-                            <v-icon>mdi-home-floor-b</v-icon>
+                            <v-icon>mdi-clipboard-list-outline</v-icon>
                         </v-list-item-icon>
                         <v-list-item-content>								
                             <v-list-item-title>KONSULTASI</v-list-item-title>
@@ -115,6 +115,50 @@
                             <v-list-item-content>
                                 <v-list-item-title>
                                     KEGIATAN
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>   
+					</div>
+                </v-list-group>
+                <v-list-group group="/laporan" no-action color="yellow">
+                    <template v-slot:activator>
+                        <v-list-item-icon class="mr-2">
+                            <v-icon>mdi-shredder</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-content>								
+                            <v-list-item-title>LAPORAN</v-list-item-title>
+                        </v-list-item-content>							
+                    </template>
+					<div>
+						<v-list-item link to="/laporan/kegiatan">
+                            <v-list-item-icon class="mr-2">
+                                <v-icon>mdi-shredder</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    LAPORAN KEGIATAN
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>   
+					</div>
+                </v-list-group>
+                <v-list-group group="/users" no-action color="yellow">
+                    <template v-slot:activator>
+                        <v-list-item-icon class="mr-2">
+                            <v-icon>mdi-account</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-content>								
+                            <v-list-item-title>USER</v-list-item-title>
+                        </v-list-item-content>							
+                    </template>
+					<div>
+						<v-list-item link to="/users/">
+                            <v-list-item-icon class="mr-2">
+                                <v-icon>mdi-account</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    USER ..
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   

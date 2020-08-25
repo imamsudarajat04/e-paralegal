@@ -2,10 +2,10 @@
     <AdminLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-clipboard-list-outline
+                mdi-shredder
             </template>
             <template v-slot:name>
-                KEGIATAN
+                LAPORAN KEGIATAN
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -21,11 +21,11 @@
                     colored-border
                     type="info"
                     >
-                    Jenis - jenis konsultasi dari masyarakat.
+                    Jenis - jenis laporan kegiatan.
                 </v-alert>
             </template>
         </ModuleHeader>   
-        <v-container fluid> 
+        <v-container fluid>   
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -59,7 +59,7 @@
 
                         <template v-slot:top>
                             <v-toolbar flat color="white">
-                                <v-toolbar-title>DAFTAR KEGIATAN</v-toolbar-title>
+                                <v-toolbar-title>DATA TABLE</v-toolbar-title>
                                 <v-divider
                                     class="mx-4"
                                     inset
@@ -77,23 +77,11 @@
                                             </v-card-title>
                                             <v-card-text>
                                                 <v-text-field 
-                                                    v-model="formdata.nama_kegiatan" 
-                                                    label="NAMA KEGIATAN"
+                                                    v-model="formdata.name" 
+                                                    label="NAME"
                                                     filled
                                                     :rules="rule_name">
                                                 </v-text-field>                                             
-                                                <v-text-field 
-                                                    v-model="formdata.tempat" 
-                                                    label="TEMPAT KEGIATAN"
-                                                    filled
-                                                    :rules="rule_name">
-                                                </v-text-field>                                             
-                                                <v-select
-                                                    v-model="formdata.id_jenis_kegiatan" 
-                                                    label="JENIS KEGIATAN"
-                                                    filled
-                                                    :rules="rule_name">
-                                                </v-select>                                             
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -220,7 +208,7 @@ export default {
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'KONSULTASI',
+                text:'LAPORAN',
                 disabled:false,
                 href:'#'
             },
@@ -249,17 +237,13 @@ export default {
         form_valid:true,         
         formdata: {
             id:0,                        
-            nama_kegiatan:'',
-            tempat:'',
-            id_jenis_kegiatan:'',                      
+            name:'',                        
             created_at: '',           
             updated_at: '',           
         },
         formdefault: {
             id:0,           
-            nama_kegiatan:'',
-            tempat:'',
-            id_jenis_kegiatan:'',                                  
+            name:'',                                     
             created_at: '',           
             updated_at: '',       
         },

@@ -43,6 +43,27 @@ Vue.use(VueRouter)
 			},
 			component: () => import('../views/pages/admin/konsultasi/Kegiatan.vue'),		
 		},
+
+		{
+			path: '/laporan/kegiatan',
+			name: 'LaporanKegiatan',
+			meta:{
+				title: "LAPORAN - KEGIATAN",
+				requiresAuth:true,
+			},
+			component: () => import('../views/pages/admin/laporan/Kegiatan.vue'),
+		},
+
+		//Users
+		// {
+		// 	path: '/users',
+		// 	name: 'USERS',
+		// 	meta:{
+		// 		title: "USERS - ",
+		// 		requiresAuth:true,
+		// 	},
+		// 	component: () => import('../views/pages/admin/users'),
+		// },
 	]
 
 const router = new VueRouter({
