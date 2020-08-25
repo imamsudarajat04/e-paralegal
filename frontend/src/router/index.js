@@ -21,6 +21,17 @@ Vue.use(VueRouter)
 			},
 			component: () => import('../views/pages/front/Login.vue')
 		},
+
+		//dmaster	
+		{
+			path: '/dmaster/jeniskegiatan',
+			name: 'DMasterJenisKegiatan',
+			meta:{
+				title: "DATA MASTER - JENIS KEGIATAN",
+				requiresAuth:true,
+			},
+			component: () => import('../views/pages/admin/dmaster/JenisKegiatan.vue'),		
+		},
 	]
 
 const router = new VueRouter({
