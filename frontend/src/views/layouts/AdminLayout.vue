@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-system-bar app dark class="brown darken-2 white--text">
+        <v-system-bar app dark class="indigo darken-3 white--text">
             
 		</v-system-bar>	
         <v-app-bar app>
@@ -60,7 +60,7 @@
                 <v-icon>mdi-menu-open</v-icon>
 			</v-app-bar-nav-icon>            
         </v-app-bar>    
-        <v-navigation-drawer v-model="drawer" width="300" dark class="brown darken-4" :temporary="isReportPage" app>
+        <v-navigation-drawer v-model="drawer" width="300" dark class="indigo darken-4" :temporary="isReportPage" app>
 			<v-list-item>
 				<v-list-item-avatar>
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-group group="/dmaster" no-action color="deep-orange darken-1">
+                <v-list-group group="/dmaster" no-action color="yellow">
                     <template v-slot:activator>
                         <v-list-item-icon class="mr-2">
                             <v-icon>mdi-home-floor-b</v-icon>
@@ -88,11 +88,33 @@
 					<div>
 						<v-list-item link to="/dmaster/jeniskegiatan">
                             <v-list-item-icon class="mr-2">
-                                <v-icon>mdi-office-building</v-icon>
+                                <v-icon>mdi-format-list-bulleted</v-icon>
                             </v-list-item-icon>
                             <v-list-item-content>
                                 <v-list-item-title>
                                     JENIS KEGIATAN
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>   
+					</div>
+                </v-list-group>
+                <v-list-group group="/konsultasi" no-action color="yellow">
+                    <template v-slot:activator>
+                        <v-list-item-icon class="mr-2">
+                            <v-icon>mdi-home-floor-b</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-content>								
+                            <v-list-item-title>KONSULTASI</v-list-item-title>
+                        </v-list-item-content>							
+                    </template>
+					<div>
+						<v-list-item link to="/konsultasi/kegiatan">
+                            <v-list-item-icon class="mr-2">
+                                <v-icon>mdi-clipboard-list-outline</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    KEGIATAN
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   

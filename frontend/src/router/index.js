@@ -32,6 +32,17 @@ Vue.use(VueRouter)
 			},
 			component: () => import('../views/pages/admin/dmaster/JenisKegiatan.vue'),		
 		},
+
+		//Konsultasi
+		{
+			path: '/konsultasi/kegiatan',
+			name: 'KonsultasiKegiatan',
+			meta:{
+				title: "KONSULTASI - KEGIATAN",
+				requiresAuth:true,
+			},
+			component: () => import('../views/pages/admin/konsultasi/Kegiatan.vue'),		
+		},
 	]
 
 const router = new VueRouter({

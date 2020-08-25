@@ -2,10 +2,10 @@
     <AdminLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-format-list-bulleted
+                mdi-clipboard-list-outline
             </template>
             <template v-slot:name>
-                JENIS KEGIATAN
+                KEGIATAN
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -21,11 +21,23 @@
                     colored-border
                     type="info"
                     >
-                    Jenis - Jenis kegiatan konsultasi masyarakat
+                    Text
                 </v-alert>
             </template>
         </ModuleHeader>   
-        <v-container fluid>    
+        <v-container fluid> 
+            <v-row class="mb-4" no-gutters>
+                <v-col cols="12">
+                    <v-card>
+                        <v-card-title>
+                            FILTER
+                        </v-card-title>
+                        <v-card-text>
+                        
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+            </v-row>    
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -199,7 +211,7 @@
 import AdminLayout from '@/views/layouts/AdminLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'JenisKegiatan',
+    name:'PAGE',
     created () {
         this.breadcrumbs = [
             {
@@ -208,12 +220,12 @@ export default {
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'DATA MASTER',
+                text:'PAGE_GROUP',
                 disabled:false,
                 href:'#'
             },
             {
-                text:'JENIS KEGIATAN',
+                text:'PAGE',
                 disabled:true,
                 href:'#'
             }
