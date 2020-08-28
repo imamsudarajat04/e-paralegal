@@ -55,15 +55,65 @@ Vue.use(VueRouter)
 		},
 
 		//Users
-		// {
-		// 	path: '/users',
-		// 	name: 'USERS',
-		// 	meta:{
-		// 		title: "USERS - ",
-		// 		requiresAuth:true,
-		// 	},
-		// 	component: () => import('../views/pages/admin/users'),
-		// },
+		{
+			path: '/users/superadmin',
+			name: 'USERSUPERADMIN',
+			meta:{
+				title: "USERS - SUPERADMIN",
+				requiresAuth:true,
+			},
+			component: () => import('../views/pages/admin/users/SuperAdmin.vue'),
+		},
+
+		{
+			path: '/users/legal',
+			name: 'USERLEGAL',
+			meta:{
+				title: "USERS - LEGAL",
+				requiresAuth:true,
+			},
+			component: () => import('../views/pages/admin/users/UsersLegal.vue'),
+		},
+		
+		{
+			path: '/users/kades',
+			name: 'USERKADES',
+			meta:{
+				title: "USERS - KADES",
+				requiresAuth:true,
+			},
+			component: () => import('../views/pages/admin/users/UsersKades.vue'),
+		},
+
+		{
+			path: '/users/pmb',
+			name: 'USERPMB',
+			meta:{
+				title: "USERS - PMB",
+				requiresAuth:true,
+			},
+			component: () => import('../views/pages/admin/users/UsersPmb.vue'),
+		},
+		
+		{
+			path: '/users/obh',
+			name: 'USEROBH',
+			meta:{
+				title: "USERS - OBH",
+				requiresAuth:true,
+			},
+			component: () => import('../views/pages/admin/users/UsersObh.vue'),
+		},
+
+		{
+			path: '/users/kumham',
+			name: 'USERKUMHAM',
+			meta:{
+				title: "USERS - KUMHAM",
+				requiresAuth:true,
+			},
+			component: () => import('../views/pages/admin/users/UsersKumham.vue'),
+		},
 	]
 
 const router = new VueRouter({

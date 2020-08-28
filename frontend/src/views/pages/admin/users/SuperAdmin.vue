@@ -2,10 +2,10 @@
     <AdminLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-format-list-bulleted
+                mdi-shredder
             </template>
             <template v-slot:name>
-                JENIS KEGIATAN
+                LAPORAN KEGIATAN
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -21,7 +21,7 @@
                     colored-border
                     type="info"
                     >
-                    Jenis - Jenis kegiatan konsultasi masyarakat
+                    Jenis - jenis laporan kegiatan.
                 </v-alert>
             </template>
         </ModuleHeader>   
@@ -67,6 +67,36 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                                 <v-dialog v-model="dialogfrm" max-width="500px" persistent>
+                                    <template v-slot:activator="{ on }">
+                                        <v-btn color="primary" dark class="mb-2" v-on="on">TAMBAH</v-btn>
+                                    </template>
+                                    <v-form ref="frmdata" v-model="form_valid" lazy-validation>
+                                        <v-card>
+                                            <v-card-title>
+                                                <span class="headline">{{ formTitle }}</span>
+                                            </v-card-title>
+                                            <v-card-text>
+                                                <v-text-field 
+                                                    v-model="formdata.name" 
+                                                    label="NAME"
+                                                    filled
+                                                    :rules="rule_name">
+                                                </v-text-field>                                             
+                                            </v-card-text>
+                                            <v-card-actions>
+                                                <v-spacer></v-spacer>
+                                                <v-btn color="blue darken-1" text @click.stop="closedialogfrm">BATAL</v-btn>
+                                                <v-btn 
+                                                    color="blue darken-1" 
+                                                    text 
+                                                    @click.stop="save" 
+                                                    :loading="btnLoading"
+                                                    :disabled="!form_valid||btnLoading">
+                                                        SIMPAN
+                                                </v-btn>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </v-form>
                                 </v-dialog>
                                 <v-dialog v-model="dialogdetailitem" max-width="500px" persistent>
                                     <v-card>
@@ -169,7 +199,7 @@
 import AdminLayout from '@/views/layouts/AdminLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'JenisKegiatan',
+    name:'PAGE',
     created () {
         this.breadcrumbs = [
             {
@@ -178,12 +208,12 @@ export default {
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'DATA MASTER',
+                text:'LAPORAN',
                 disabled:false,
                 href:'#'
             },
             {
-                text:'JENIS KEGIATAN',
+                text:'KEGIATAN',
                 disabled:true,
                 href:'#'
             }
