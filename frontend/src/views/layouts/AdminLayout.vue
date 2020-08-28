@@ -152,7 +152,7 @@
                         </v-list-item-content>							
                     </template>
 					<div>
-						<v-list-item link to="/users/">
+						<v-list-item link to="/users/superadmin">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-account</v-icon>
                             </v-list-item-icon>
@@ -164,7 +164,7 @@
                         </v-list-item>   
 					</div>
                     <div>
-						<v-list-item link to="/users/">
+						<v-list-item link to="/users/legal">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-account</v-icon>
                             </v-list-item-icon>
@@ -176,7 +176,7 @@
                         </v-list-item>   
 					</div>
                     <div>
-						<v-list-item link to="/users/">
+						<v-list-item link to="/users/kades">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-account</v-icon>
                             </v-list-item-icon>
@@ -188,7 +188,7 @@
                         </v-list-item>   
 					</div>
                     <div>
-						<v-list-item link to="/users/">
+						<v-list-item link to="/users/pmb">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-account</v-icon>
                             </v-list-item-icon>
@@ -200,7 +200,7 @@
                         </v-list-item>   
 					</div>
                     <div>
-						<v-list-item link to="/users/">
+						<v-list-item link to="/users/obh">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-account</v-icon>
                             </v-list-item-icon>
@@ -212,7 +212,7 @@
                         </v-list-item>   
 					</div>
                     <div>
-						<v-list-item link to="/users/">
+						<v-list-item link to="/users/kumham">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-account</v-icon>
                             </v-list-item-icon>

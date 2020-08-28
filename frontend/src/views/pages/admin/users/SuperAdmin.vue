@@ -2,10 +2,10 @@
     <AdminLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-shredder
+                mdi-account
             </template>
             <template v-slot:name>
-                LAPORAN KEGIATAN
+                SUPER ADMIN
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -21,7 +21,7 @@
                     colored-border
                     type="info"
                     >
-                    Jenis - jenis laporan kegiatan.
+                    Halaman ini berisi daftar pengguna dengan role superadmin.
                 </v-alert>
             </template>
         </ModuleHeader>   
@@ -59,7 +59,7 @@
 
                         <template v-slot:top>
                             <v-toolbar flat color="white">
-                                <v-toolbar-title>DATA TABLE</v-toolbar-title>
+                                <v-toolbar-title>DAFTAR USER</v-toolbar-title>
                                 <v-divider
                                     class="mx-4"
                                     inset
@@ -78,10 +78,35 @@
                                             <v-card-text>
                                                 <v-text-field 
                                                     v-model="formdata.name" 
-                                                    label="NAME"
+                                                    label="NAMA USER"
                                                     filled
                                                     :rules="rule_name">
                                                 </v-text-field>                                             
+                                                <v-text-field 
+                                                    v-model="formdata.email" 
+                                                    label="E-MAIL"
+                                                    filled
+                                                    :rules="rule_email">
+                                                </v-text-field>
+                                                <v-text-field 
+                                                    v-model="formdata.nomor_hp" 
+                                                    label="NOMOR HP"
+                                                    filled
+                                                    :rules="rule_nomor_hp">
+                                                </v-text-field>                                             
+                                                <v-text-field 
+                                                    v-model="formdata.username" 
+                                                    label="USERNAME"
+                                                    filled
+                                                    :rules="rule_username">
+                                                </v-text-field>                                            
+                                                <v-text-field 
+                                                    v-model="formdata.password" 
+                                                    label="PASSWORD"
+                                                    filled
+                                                    :rules="rule_password"
+                                                    type="password">
+                                                </v-text-field>                                
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -199,7 +224,7 @@
 import AdminLayout from '@/views/layouts/AdminLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'PAGE',
+    name:'SuperAdmin',
     created () {
         this.breadcrumbs = [
             {
@@ -208,12 +233,12 @@ export default {
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'LAPORAN',
+                text:'USERS',
                 disabled:false,
                 href:'#'
             },
             {
-                text:'KEGIATAN',
+                text:'SUPERADMIN',
                 disabled:true,
                 href:'#'
             }
@@ -226,7 +251,11 @@ export default {
         expanded:[],
         datatable:[],
         headers: [                        
-            { text: 'ID', value: 'id' },   
+            { text: 'ID', value: 'id' }, 
+            { text: 'NAMA USER', value: 'name' },   
+            { text: 'EMAIL', value: 'email' },   
+            { text: 'NOMOR HP', value: 'nomor_hp' },   
+            { text: 'USERNAME', value: 'username' },   
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         search:'',    
@@ -236,38 +265,58 @@ export default {
         //form data   
         form_valid:true,         
         formdata: {
-            id:0,                        
-            name:'',                        
+            id:0,    
+            username:'',                    
+            name:'',
+            email:'',
+            password:'',
+            nomor_hp:'',
             created_at: '',           
             updated_at: '',           
         },
         formdefault: {
             id:0,           
-            name:'',                                     
+            username:'',                    
+            name:'',
+            email:'',
+            password:'',
+            nomor_hp:'',                                     
             created_at: '',           
             updated_at: '',       
         },
         editedIndex: -1,
-        //form rules  
-        rule_user_nomorhp:[
-            value => !!value||"Kode mohon untuk diisi !!!",
-            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Kode hanya boleh angka',
-        ], 
+        //form rules
         rule_name:[
-            value => !!value||"Mohon untuk di isi name !!!",  
+            value => !!value||"Mohon untuk di isi nama user !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Name hanya boleh string dan spasi',                
         ], 
+        rule_email:[
+            value => !!value || 'Mohon E-mail di isi !!!',
+            value => /.+@.+\..+/.test(value) || 'Format E-mail salah mohon diisi dengan benar',
+        ],
+        rule_nomor_hp:[
+            value => !!value||"Nomor HP mohon untuk diisi !!!",
+            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
+        ],
+        rule_username:[
+            value => !!value||"Mohon untuk di isi username User !!!",
+            value => /^[A-Za-z_]*$/.test(value) || 'Username hanya boleh string dan underscore',
+        ],
+        rule_password:[
+            value => !!value||"Mohon untuk di isi password User !!!",
+            value => value.length >= 8 || 'Minimial Password 8 karaketer',
+        ],
     }),
     methods: {
         initialize:async function () 
         {
             this.datatableLoading=true;
-            await this.$ajax.get('/path',{
+            await this.$ajax.get('/users/superadmin',{
                 headers: {
                     Authorization:this.$store.getters['auth/Token']
                 }
             }).then(({data})=>{               
-                this.datatable = data.object;
+                this.datatable = data.daftar_user;
                 this.datatableLoading=false;
             }).catch(()=>{
                 this.datatableLoading=false;
@@ -388,7 +437,7 @@ export default {
     },
     computed: {        
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
+            return this.editedIndex === -1 ? 'TAMBAH USER SUPERADMIN' : 'UBAH USER SUPERADMIN'
         },        
     },
     components:{
