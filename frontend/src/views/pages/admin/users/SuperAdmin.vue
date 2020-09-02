@@ -123,7 +123,7 @@
                                         </v-card>
                                     </v-form>
                                 </v-dialog>
-                                <v-dialog v-model="dialogdetailitem" max-width="500px" persistent>
+                                <v-dialog v-model="dialogdetailitem" max-width="700px" persistent>
                                     <v-card>
                                         <v-card-title>
                                             <span class="headline">DETAIL DATA</span>
@@ -164,6 +164,26 @@
                                                         <v-card-title>UPDATED :</v-card-title>
                                                         <v-card-subtitle>
                                                             {{$date(formdata.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                                        </v-card-subtitle>
+                                                    </v-card>
+                                                </v-col>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                            </v-row>
+                                            <v-row no-gutters>
+                                                <v-col xs="12" sm="6" md="6">
+                                                    <v-card flat>
+                                                        <v-card-title>EMAIL :</v-card-title>
+                                                        <v-card-subtitle>
+                                                            {{formdata.email}}
+                                                        </v-card-subtitle>
+                                                    </v-card>
+                                                </v-col>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                                <v-col xs="12" sm="6" md="6">
+                                                    <v-card flat>
+                                                        <v-card-title>NOMOR HP :</v-card-title>
+                                                        <v-card-subtitle>
+                                                            {{formdata.nomor_hp}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -355,10 +375,14 @@ export default {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    await this.$ajax.post('/path/'+this.formdata.id,
+                    await this.$ajax.post('/users/superadmin/'+this.formdata.id,
                         {
                             '_method':'PUT',
-                            name:this.formdata.name,                       
+                            name:this.formdata.name,
+                            email:this.formdata.email,
+                            nomor_hp:this.formdata.nomor_hp,
+                            username:this.formdata.username,
+                            password:this.formdata.password,                       
                         },
                         {
                             headers:{
@@ -366,7 +390,7 @@ export default {
                             }
                         }
                     ).then(({data})=>{   
-                        Object.assign(this.datatable[this.editedIndex], data.object);
+                        Object.assign(this.datatable[this.editedIndex], data.user);
                         this.closedialogfrm();
                         this.btnLoading=false;
                     }).catch(()=>{
@@ -374,9 +398,13 @@ export default {
                     });                 
                     
                 } else {
-                    await this.$ajax.post('/path/store',
+                    await this.$ajax.post('/users/superadmin',
                         {
-                            name:this.formdata.name,                            
+                            name:this.formdata.name, 
+                            email:this.formdata.email,
+                            nomor_hp:this.formdata.nomor_hp,
+                            username:this.formdata.username,
+                            password:this.formdata.password,                   
                         },
                         {
                             headers:{
@@ -384,7 +412,7 @@ export default {
                             }
                         }
                     ).then(({data})=>{   
-                        this.datatable.push(data.object);
+                        this.datatable.push(data.user);
                         this.closedialogfrm();
                         this.btnLoading=false;
                     }).catch(()=>{
@@ -398,7 +426,7 @@ export default {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/path/'+item.id,
+                    this.$ajax.post('/users/superadmin/'+item.id,
                         {
                             '_method':'DELETE',
                         },
